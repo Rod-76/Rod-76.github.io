@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Custom Css  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat" />
+    
+
+    <title>Avatar Generator</title>
+</head>
+<body>
+  <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div id="app" class="relative mx-auto max-w-md overflow-hidden rounded-xl bg-white px-6 pt-10 pb-8 text-center shadow-xl ring-1 ring-gray-900/5 md:max-w-2xl">
+      <h1 class="pb-8 text-4xl font-montserrat font-bold text-sky-400 hover:text-sky-600">{{title}}</h1>
+      <div class="mx-auto max-w-md md:shrink-0">
+        <div>
+          <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
+            <p v-if="avatar.length > 0"><img :src="avatar" class="mx-auto mb-4 w-36 rounded-3xl shadow-lg md:h-full md:w-48"/></p>
+          </div>
+          <div class="flex justify-center">
+            <div>
+              <div class="mb-3 xl:w-96">
+                <input v-model="name" type="text" class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none" placeholder="Your name" />
+              </div>
+              <div class="mb-3 xl:w-96">
+                <label>Choose a Style:</label>
+                <select v-model="style" class="form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300 bg-white bg-clip-padding bg-no-repeat px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none" aria-label="Default select example">
+                  <option value="adventurer">Adventurer</option>
+                  <option value="bottts">Bottts</option>
+                  <option value="micah">Micah</option>
+                </select>
+              </div>
+              <div class="mb-3 xl:w-96">
+                <label>Choose a Color:</label>
+                <select v-model="color" class="form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300 bg-white bg-clip-padding bg-no-repeat px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none" aria-label="Default select example">
+                  <option value="blue">blue</option>
+                  <option value="red">red</option>
+                  <option value="green">green</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            
+          </div>
+          </div>
+          
+          
+                             
+          <div class="pt-8 text-base font-semibold leading-7">
+            <button @click="fetchData" class="rounded-full bg-sky-500 px-6 py-2 text-white shadow-xl hover:bg-sky-700">{{btnText}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+<!--JavaScript-->
+<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp } = Vue
+  
+  const confetti = new JSConfetti()
+    
+  createApp({
+      data(){
+        return {
+          color: '',
+          name: '',
+          style: '',
+          avatar: '',
+          title: 'Avatar Generator',
+          btnText: 'Generate',
+        }
+      },
+      methods: {
+        fetchData() {
+          this.avatar = `https://avatars.dicebear.com/api/${this.style}/${this.name}.svg?background=${this.color}`;
+          this.btnText = 'Generated';
+          confetti.addConfetti();
+        }
+    }
+    }).mount('#app')
+</script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Montserrat', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>    
+</body>     
+</html>
+
