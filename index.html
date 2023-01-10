@@ -7,7 +7,6 @@
     <!-- Custom Css  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat" />
     
@@ -22,6 +21,7 @@
         <div>
           <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
             <p v-if="avatar.length > 0"><img :src="avatar" class="mx-auto mb-4 w-36 rounded-3xl shadow-lg md:h-full md:w-48"/></p>
+            <p v-else><img src="https://media.tenor.com/JCgiVFqNDewAAAAi/coffee-pepe.gif" class="mx-auto rounded-3xl shadow-lg w-40" /></p>
           </div>
           <div class="flex justify-center">
             <div>
@@ -45,9 +45,16 @@
                 </select>
               </div>
             </div>
-          </div>                  
+          </div>
+          <div class="flex justify-center">
+            
+          </div>
+          </div>
+          
+          
+                             
           <div class="pt-8 text-base font-semibold leading-7">
-            <button @click="fetchData" data-mdb-ripple="true" data-mdb-ripple-color="light" data-mdb-ripple-duration="1000ms" class="hover:scale-110 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-outrounded-full bg-sky-500 px-6 py-2 text-white shadow-xl hover:bg-sky-700">{{btnText}}</button>
+            <button @click="fetchData" data-mdb-ripple="true" data-mdb-ripple-color="light" data-mdb-ripple-duration="1000ms" class="hover:scale-110 rounded-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-outrounded-full bg-sky-500 px-6 py-2 text-white shadow-xl hover:bg-sky-700">{{btnText}}</button>
           </div>
         </div>
       </div>
@@ -62,6 +69,16 @@
   const { createApp } = Vue
   
   const confetti = new JSConfetti()
+
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Montserrat,sans-serif'],
+        },
+      }
+    }
+  }
     
   createApp({
       data(){
@@ -83,17 +100,6 @@
     }
     }).mount('#app')
 </script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Montserrat', 'sans-serif'],
-        },
-      }
-    }
-  }
-</script>    
 </body>     
 </html>
 
